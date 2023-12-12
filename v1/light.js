@@ -1,8 +1,8 @@
 // connect pre define styles
 let styles = document.createElement("link");
+styles.type = "text/css";
 styles.rel = "stylesheet";
 styles.href = "https://cdn.jsdelivr.net/gh/MDHein/WiScript@main/v1/style.css";
-styles.type = "text/css";
 document.head.appendChild(styles);
 
 function ImageView() {
@@ -10,6 +10,9 @@ function ImageView() {
  getElementAttributes(element);
  element.setImage = function(url) {
   this.src = url;
+ }
+ element.setType = function(text) {
+  this.style.objectFit = text;
  }
  return element;
 }
@@ -180,7 +183,18 @@ function getElementAttributes(view) {
  };
  view.setBackgroundImage = function(text) {
   this.style.background = `url('${text}')`;
+  this.style.backgroundRepeat = "no-repeat";
  };
+ view.setDimBackgroundImage = function(text) {
+  this.style.background = `linear-gradient(to bottom, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.9) 100%), url('${text}') no-repeat center top`;
+  this.style.backgroundRepeat = "no-repeat";
+ };
+ view.setBackgroundSize = function(text) {
+  this.style.backgroundSize = text;
+ }
+ view.setBackgroundPosition = function(text) {
+  this.style.backgroundPosition = text;
+ }
  view.setScroll = function(text) {
   this.style.overflow = text;
  };
@@ -525,6 +539,24 @@ function initToolbar() {
  });
 }
 function createToolbarItem(name, action) {
+ let item = `<a href="${action}">${name}</a>`
+ let box1 = getElement(".wi-toolbar nav");
+ let box2 = getElement(".mobile-nav");
+ box1.insertAdjacentHTML("beforeend",
+  item);
+ box2.insertAdjacentHTML("beforeend",
+  item);
+}
+function createMenuItem(name, action) {
+ let item = `<a href="${action}">${name}</a>`
+ let box1 = getElement(".wi-toolbar nav");
+ let box2 = getElement(".mobile-nav");
+ box1.insertAdjacentHTML("beforeend",
+  item);
+ box2.insertAdjacentHTML("beforeend",
+  item);
+}
+function createDrawerItem(name, action) {
  let item = `<a href="${action}">${name}</a>`
  let box1 = getElement(".wi-toolbar nav");
  let box2 = getElement(".mobile-nav");
