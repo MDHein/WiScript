@@ -1,7 +1,7 @@
 // connect pre define styles
 let styles = document.createElement("link");
 styles.rel = "stylesheet";
-styles.href = "style.css";
+styles.href = "https://cdn.jsdelivr.net/gh/MDHein/WiScript@main/v1/style.css";
 styles.type = "text/css";
 document.head.appendChild(styles);
 
