@@ -1,0 +1,2 @@
+# WiScript 
+ShortCode for JavaScript 
