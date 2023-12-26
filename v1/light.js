@@ -2,7 +2,7 @@
 let styles = document.createElement("link");
 styles.type = "text/css";
 styles.rel = "stylesheet";
-styles.href = "https://cdn.jsdelivr.net/gh/MDHein/WiScript@main/v1/style.css";
+styles.href = "https://cdn.jsdelivr.net/gh/MDHein/WiScript@latest/v1/style.css";
 document.head.appendChild(styles);
 
 function ImageView() {
@@ -92,6 +92,18 @@ function LinearLayout() {
  element.setClass("wi-vertical-layout");
  return element;
 }
+function ListView() {
+ let element = document.createElement("ul");
+ getElementAttributes(element);
+ element.setClass("wi-listview");
+ return element;
+}
+function AutoView() {
+ let element = document.createElement("div");
+ getElementAttributes(element);
+ element.setClass("wi-auto-view");
+ return element;
+}
 
 function createElement(e) {
  let element = document.createElement(e);
@@ -147,6 +159,9 @@ function getElementAttributes(view) {
  };
  view.addNew = function(text) {
   this.appendChild(text);
+ };
+ view.addClass = function(text) {
+  this.classList.add(text);
  };
  view.setId = function(text) {
   this.id = text;
@@ -235,6 +250,18 @@ function getElementAttributes(view) {
  };
  view.preferFlex = function() {
   this.style.flex = "1";
+ };
+ view.preferResponsive = function() {
+  this.classList.add("wi-responsive");
+ };
+ view.preferResponsiveWidth = function() {
+  this.classList.add("wi-responsive-width");
+ };
+ view.preferResponsiveHeight = function() {
+  this.classList.add("wi-responsive-height");
+ };
+ view.preferResponsivePadding = function() {
+  this.classList.add("wi-responsive-padding");
  };
  view.preferXScroll = function() {
   this.style.overflowX = "auto";
@@ -541,9 +568,12 @@ function initToolbar() {
 function createToolbarItem(name, action) {
  let item = `<a href="${action}">${name}</a>`
  let box1 = getElement(".wi-toolbar nav");
- let box2 = getElement(".mobile-nav");
  box1.insertAdjacentHTML("beforeend",
   item);
+}
+function createDrawerItem(name, action) {
+ let item = `<a href="${action}">${name}</a>`
+ let box2 = getElement(".mobile-nav");
  box2.insertAdjacentHTML("beforeend",
   item);
 }
@@ -556,15 +586,7 @@ function createMenuItem(name, action) {
  box2.insertAdjacentHTML("beforeend",
   item);
 }
-function createDrawerItem(name, action) {
- let item = `<a href="${action}">${name}</a>`
- let box1 = getElement(".wi-toolbar nav");
- let box2 = getElement(".mobile-nav");
- box1.insertAdjacentHTML("beforeend",
-  item);
- box2.insertAdjacentHTML("beforeend",
-  item);
-}
+
 function setAppIcon(i) {
  let icon = getElement("#appIcon");
  icon.src = i;
